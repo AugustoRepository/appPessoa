@@ -1,0 +1,86 @@
+<div class="alert alert-success alert-dismissible fade show" role="alert"
+ [hidden]="!mensagemSucesso" (click)="fecharMensagemSucesso">
+    <strong>{{mensagemSucesso}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert"
+ [hidden]="!mensagemErro" (click)="fecharMensagemErro">
+    <strong>{{mensagemErro}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<h5>Formulario de cadastro de pessoas</h5>
+<br />
+
+<form #formCadastro="ngForm" (submit)="cadastrarPessoa(formCadastro)">
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <label>Nome :</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="nome" ngModel />
+
+            <br />
+
+            <label>SobreNome:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="sobreNome" ngModel />
+
+            <br />
+
+            <label>Cpf:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="Cpf" ngModel />
+  
+            <br />
+
+            <label>Nacionalidade:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="nacionalidade" ngModel />        
+
+            <br />
+
+            <label>Cep:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="cep" ngModel />
+
+            <br />
+
+            <label>Cidade:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="cidade" ngModel />
+        
+
+            <br />
+      
+            <label>Estado:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="estado" ngModel />
+            <br />
+
+            <label>Logradouro:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="logradouro" ngModel />
+
+            <br />
+
+            <label>Email:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="email" ngModel />
+
+            <br />
+
+            <label>Telefone:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" name="telefone" ngModel />
+
+            <br />
+
+            <button class="btn btn-success btn-sm mr-1" type="submit">
+                Cadastrar Produto
+            </button>
+
+            <button class="btn btn-secondary btn-sm mr-1" type="reset">
+                Limpar Campos
+            </button>
+
+
+        </div>
+    </div>
+</form>

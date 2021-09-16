@@ -1,0 +1,211 @@
+<div class="alert alert-success alert dismissible fade show" role="alert"
+ [hidden]="!mensagemSucesso" (click)="fecharMensagemSucesso">
+    <strong>{{mensagemSucesso}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="alert alert-danger alert dismissible fade show" role="alert"
+ [hidden]="!mensagemErro" (click)="fecharMensagemErro">
+    <strong>{{mensagemErro}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<h5>Relacao de pessoas cadastradas</h5>
+<br/>
+
+<table class="table table-bordered table-hover table-stripped">
+    <thead>
+        <tr>
+            
+            <th>Nome</th>
+            <th>SobreNome</th>
+            <th>Cpf</th>
+            <th>Nacionalidade</th>           
+            <th>CEP</th>
+            <th>Cidade</th>
+            <th>Estado</th>          
+            <th>Logradouro</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th width='160'>Operacoes</th>
+        </tr>
+    </thead>
+    <tbody>        
+       <tr *ngFor="let item of listagemPessoas">
+            
+            <td>{{item.nome}}</td>
+            <td>{{item.sobreNome}}</td>
+            <td>{{item.cpf}}</td>
+            <td>{{item.nacionalidade}}</td>
+            <td>{{item.cep}}</td>
+            <td>{{item.cidade}}</td>
+            <td>{{item.estado}}</td>            
+            <td>{{item.logradouro}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.telefone}}</td>
+            
+            <td >
+                <button class="btn btn-primary btn-sm mr=1"
+                data-bs-target="#janela_edicao" data-bs-toggle="modal"
+                (click)="obterPessoa(item.id)">
+                    Atualizar
+                </button>
+                <button class="btn btn-danger btn-sm mr=1"
+                (click)="excluirPessoa(item.id)">
+                    Excluir
+                </button>
+                
+            </td>
+            
+        </tr> 
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7">
+                Quantidade de intens exibidos: {{listagemPessoas?.length}}
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<div class="modal fade" id="janela_edicao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Atualizar pessoa</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form #formEdicao="ngForm" (submit)="atualizarPessoa(formEdicao)">
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <input type="hidden" 
+                                   name="id"
+                                   [(ngModel)]="pessoaEdicao.id"/>
+
+                                   
+
+                            <label>Nome:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="nome"
+                                   [(ngModel)]="pessoaEdicao.nome" />
+                            <div class="text-danger" *ngFor="let mensagem of errosNome">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>SobreNome:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui" 
+                                   name="sobreNome"
+                                   [(ngModel)]="pessoaEdicao.sobreNome"/>
+                            <div class="text-danger" *ngFor="let mensagem of errosSobreNome">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Cpf:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="cpf"
+                                   [(ngModel)]="pessoaEdicao.cpf" />
+                            <div class="text-danger" *ngFor="let mensagem of errosCpf">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Nacionalidade:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="nacionalidade"
+                                   [(ngModel)]="pessoaEdicao.nacionalidade" />
+                            <div class="text-danger" *ngFor="let mensagem of errosNacionalidade">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Cep:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="cep"
+                                   [(ngModel)]="pessoaEdicao.cep" />
+                            <div class="text-danger" *ngFor="let mensagem of errosCep">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Cidade:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="cidade"
+                                   [(ngModel)]="pessoaEdicao.cidade" />
+                            <div class="text-danger" *ngFor="let mensagem of errosCidade">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Estado:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="estado"
+                                   [(ngModel)]="pessoaEdicao.estado" />
+                            <div class="text-danger" *ngFor="let mensagem of errosEstado">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Logradouro:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="logradouro"
+                                   [(ngModel)]="pessoaEdicao.logradouro" />
+                            <div class="text-danger" *ngFor="let mensagem of errosLogradouro">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Email:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="email"
+                                   [(ngModel)]="pessoaEdicao.email" />
+                            <div class="text-danger" *ngFor="let mensagem of errosEmail">
+                                {{mensagem}}
+                            </div>
+                            <br />
+
+                            <label>Telefone:</label>
+                            <input type="text" class="form-control" 
+                                   placeholder="Digite aqui"
+                                   name="telefone"
+                                   [(ngModel)]="pessoaEdicao.telefone" />
+                            <div class="text-danger" *ngFor="let mensagem of errosTelefone">
+                                {{mensagem}}
+                            </div>
+                            <br />                            
+
+                            <button class="btn btn-primary btn-sm mr-1" type="submit">
+                                Salvar Alterações
+                            </button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
